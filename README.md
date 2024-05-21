@@ -10,7 +10,7 @@ External API: Finnhub (https://finnhub.io/)
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install dependencies. Fronend url: (http://localhost:3000)
+Use the package manager [npm](https://www.npmjs.com/) to install dependencies. Frontend url: (http://localhost:3000)  Backend url: (http://localhost:4000)
 
 ```bash
 cd watchlist-backend
