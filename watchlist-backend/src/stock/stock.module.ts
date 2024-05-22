@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { StockController } from './stock.controller';
 import { StockService } from './stock.service';
-import { Stock, StockSchema } from './entitites/stock.entity';
+import { Stock, StockSchema } from './schema/stock.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { AuthModule } from 'src/auth/auth.module';

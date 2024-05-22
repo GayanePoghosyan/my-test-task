@@ -3,7 +3,7 @@ import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { User } from '../user/entities/user.entity';
+import { User } from '../user/schema/user.schema';
 import { JwtAuthGuard } from '../guard/jwt-auth-guard';
 import { CurrentUser } from '../decorators/current-user.decorator';
 

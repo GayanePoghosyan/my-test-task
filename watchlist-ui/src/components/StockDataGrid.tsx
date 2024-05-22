@@ -26,20 +26,18 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
             width: 150,
             renderCell: (params: any) => (
                 <Box sx={{ display: 'flex' }}>
-                    <img src={params.value} width={40} height={40} />
+                    <img src={params.value} alt='logo' width={40} height={40} />
                 </Box>
             ),
         },
         {
             field: 'symbol',
             headerName: 'Symbol',
-
         },
         {
             field: 'componyName',
             headerName: 'Company Name',
             width: 200
-
         },
         {
             field: 'currentPrice',
@@ -101,7 +99,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
     ];
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <Box>
             <DataGrid rows={rows} columns={columns} initialState={{
                 pagination: {
                     paginationModel: {
@@ -110,13 +108,14 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
                 },
             }} sx={{
                 boxShadow: 2,
+                height: 400,
                 border: 2,
                 borderColor: 'primary.light',
                 '& .MuiDataGrid-cell:hover': {
                     color: 'primary.main',
                 },
             }} />
-        </div>
+        </Box>
     );
 };
 

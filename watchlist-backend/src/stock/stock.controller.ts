@@ -3,6 +3,7 @@ import { StockService } from './stock.service';
 import { JwtAuthGuard } from '../guard/jwt-auth-guard';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { UpdateStockDto } from './dto/update-stock.dto';
+import { IStock } from '../utils/interfaces';
 
 @Controller('stock')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -17,14 +18,14 @@ export class StockController {
   @Get('by-symbol')
   @UseGuards(JwtAuthGuard)
   async getStockBySymbol(
-    @Query('symbol') symbol?: string): Promise<any> {
+    @Query('symbol') symbol?: string): Promise<IStock> {
     const data = await this.stockService.getBySymbol(symbol)
     return data;
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  async getStocks(@CurrentUser() user): Promise<any> {
+  async getStocks(@CurrentUser() user): Promise<IStock[]> {
     return await this.stockService.getByUserId(user?._id)
   }
 

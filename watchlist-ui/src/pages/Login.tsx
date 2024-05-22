@@ -2,9 +2,10 @@ import { Avatar, Box, Button, Container, CssBaseline, Grid, TextField, Typograph
 import { LockOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGoogleLogin } from "@react-oauth/google";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import { useUser } from "../contexts";
 import { useUserService } from "../services";
+import styles from '../styles/style.module.css';
 import axios from "axios";
 
 interface SignInState {
@@ -79,6 +80,7 @@ const Login: React.FC = () => {
                 setProfile(res.data)
                 googleSignIn(res.data);
             } catch (error) {
+                googleLogout()
                 console.log(error)
             }
         },
@@ -90,14 +92,7 @@ const Login: React.FC = () => {
     return (
         <Container maxWidth="xs">
             <CssBaseline />
-            <Box
-                sx={{
-                    mt: 15,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                }}
-            >
+            <Box className={styles.form}>
                 <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
                     <LockOutlined />
                 </Avatar>

@@ -1,7 +1,7 @@
 import { BadRequestException, forwardRef, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { environments } from '../configuration/config';
-import { User } from '../user/entities/user.entity';
+import { User } from '../user/schema/user.schema';
 import { UserService } from '../user/user.service';
 import { Token } from '../guard/jwt-auth-guard';
 import { v4 as uuid } from 'uuid';

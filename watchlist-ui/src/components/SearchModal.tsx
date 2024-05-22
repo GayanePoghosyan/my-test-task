@@ -3,6 +3,7 @@ import { Modal, Box, TextField, Grid, IconButton, InputAdornment } from '@mui/ma
 import SearchIcon from '@mui/icons-material/Search';
 import StockCard from './StockCard';
 import { useWatchlist } from '../contexts';
+import styles from '../styles/style.module.css';
 
 const ModalComponent: React.FC<{ open: boolean, handleClose: () => void }> = ({ open, handleClose }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -30,19 +31,7 @@ const ModalComponent: React.FC<{ open: boolean, handleClose: () => void }> = ({ 
     }
     return (
         <Modal open={open} onClose={closeModal}>
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: 400,
-                    bgcolor: 'background.paper',
-                    boxShadow: 24,
-                    p: 4,
-                    borderRadius: 2,
-                }}
-            >
+            <Box className={styles.modal}>
                 <TextField
                     fullWidth
                     variant="outlined"

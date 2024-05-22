@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 export const setAuthenticationToken = (token: string) => {
     localStorage.setItem('AUTHENTICATION_TOKEN', token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

@@ -28,7 +28,6 @@ const UserInfoPanel: React.FC<UserInfoPanelProps> = ({ open, onClose }) => {
         dispatch({ type: 'CLEAR_WATCHLIST' });
     }
 
-
     function stringAvatar(name: string) {
         return {
             sx: {
@@ -42,7 +41,7 @@ const UserInfoPanel: React.FC<UserInfoPanelProps> = ({ open, onClose }) => {
     return (
         <Box sx={{ flexGrow: 0 }}>
             <Menu
-                sx={{ mt: '45px' }}
+                sx={{ mt: '45px', padding: '20px' }}
                 id="menu-appbar"
                 anchorOrigin={{
                     vertical: 'top',

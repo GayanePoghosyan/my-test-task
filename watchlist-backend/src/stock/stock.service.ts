@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { IStock } from '../utils/interfaces';
 import { environments } from '../configuration/config';
-import { Stock, StockDocument } from './entitites/stock.entity';
+import { Stock, StockDocument } from './schema/stock.schema';
 import { UpdateStockDto } from './dto/update-stock.dto';
 
 @Injectable()
@@ -22,7 +22,15 @@ export class StockService {
         logo: data.logo || ''
     })
 
-    async getBySymbol(symbol: string): Promise<any> {
+    private create(userId: string, symbol: string): Promise<Stock> {
+        const data = new this.stockModel({
+            userId,
+            symbols: [symbol]
+        });
+        return data.save()
+    }
+
+    async getBySymbol(symbol: string): Promise<IStock> {
         try {
             const response = await axios.get(environments.finnhubAPIUrl + '/quote', {
                 params: {
@@ -32,7 +40,7 @@ export class StockService {
             });
             const stockData = response.data;
             const stock: IStock = this.createStockObject(stockData, symbol)
-            return JSON.stringify(stock)
+            return stock;
         } catch (error) {
             this.logger.error(JSON.stringify(error))
             throw new InternalServerErrorException('Error fetching data from finnhub')
@@ -56,13 +64,10 @@ export class StockService {
                 const data = await this.stockModel.findByIdAndUpdate(stock?._id, stock);
                 return data
             } else if (action === 'add') {
-                const data = await this.stockModel.create({
-                    userId,
-                    symbols: [symbol]
-                });
-                return data
+                this.create(userId, symbol);
             }
         } catch (error) {
+            this.logger.error(JSON.stringify(error));
             throw new Error('Invalid action or no changes made')
         }
     }
@@ -70,33 +75,32 @@ export class StockService {
     async getByUserId(userId: string): Promise<IStock[]> {
         try {
             const stock = await this.stockModel.findOne({ userId })
-            if (!stock) {
-                throw new NotFoundException(`Stock data not found`);
+            if (stock) {
+                const symbols = stock.symbols;
+                const promises = symbols?.map(async (symbol: string) => {
+                    const resp = await axios.get(environments.finnhubAPIUrl + '/quote', {
+                        params: {
+                            symbol,
+                            token: environments.apiSecretKey,
+                        },
+                    })
+                    const company = await axios.get(environments.finnhubAPIUrl + '/stock/profile2', {
+                        params: {
+                            symbol,
+                            token: environments.apiSecretKey,
+                        },
+                    })
+
+                    if (company?.data) {
+                        resp.data.companyName = company?.data?.name;
+                        resp.data.logo = company?.data?.logo
+                    }
+                    const stockObject = this.createStockObject(resp?.data, symbol)
+                    return stockObject
+                })
+                return await Promise.all(promises);
             }
-            const symbols = stock.symbols;
-            const promises = symbols?.map(async (symbol: string) => {
-                const resp = await axios.get(environments.finnhubAPIUrl + '/quote', {
-                    params: {
-                        symbol,
-                        token: environments.apiSecretKey,
-                    },
-                })
-                const company = await axios.get(environments.finnhubAPIUrl + '/stock/profile2', {
-                    params: {
-                        symbol,
-                        token: environments.apiSecretKey,
-                    },
-                })
-
-                if (company?.data) {
-                    resp.data.companyName = company?.data?.name;
-                    resp.data.logo = company?.data?.logo
-                }
-                const sockObject = this.createStockObject(resp?.data, symbol)
-                return sockObject
-            })
-
-            return await Promise.all(promises);
+            return []
         }
         catch (error) {
             this.logger.error(JSON.stringify(error))

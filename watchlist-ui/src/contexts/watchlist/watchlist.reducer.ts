@@ -1,7 +1,7 @@
 import { State, Action } from '../../interfaces';
 
 const watchReducer = (state: State, action: Action): State => {
-    const itemIndex = state?.watchlist?.findIndex((item => item?.symbol == action?.payload?.symbol));
+    const itemIndex = state?.watchlist?.findIndex((item => item?.symbol === action?.payload?.symbol));
     switch (action.type) {
         case 'GET_STOCK':
             return {

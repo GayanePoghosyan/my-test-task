@@ -24,7 +24,7 @@ export const userServiceActions = (dispatch: any) => {
             const accessToken = response.data?.access_token;
             dispatch({ type: 'USER_LOGIN_SUCCESS', payload: response.data?.access_token });
             setAuthenticationToken(accessToken);
-            showNotification(`You've successfully logged in. Redirecting you to the dashboard...`, { type: NotificationTypeEnum.Success })
+            showNotification(`You've successfully logged in!`, { type: NotificationTypeEnum.Success })
         } catch (error: any) {
             const message = error?.response?.data?.message
             dispatch({ type: 'USER_LOGIN_FAILURE', payload: error?.message });
@@ -39,7 +39,8 @@ export const userServiceActions = (dispatch: any) => {
             const accessToken = response.data?.access_token;
             dispatch({ type: 'LOGIN_USER_SUCCESS', payload: accessToken });
             setAuthenticationToken(accessToken);
-            showNotification(`You've successfully logged in. Redirecting you to the dashboard...`, { type: NotificationTypeEnum.Success })
+            dispatch({ type: 'GET_CURRENT_USER_REQUEST' });
+            showNotification(`You've successfully logged in!`, { type: NotificationTypeEnum.Success })
         } catch (error: any) {
             const message = error?.response?.data?.message
             dispatch({ type: 'USER_LOGIN_FAILURE', payload: message });

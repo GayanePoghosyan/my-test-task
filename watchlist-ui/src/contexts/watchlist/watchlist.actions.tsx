@@ -30,15 +30,15 @@ export const stockServiceActions = (dispatch: any) => {
     const addStock = async (item: Stock) => {
         dispatch({ type: 'ADD_STOCK' });
         try {
-            const response = await axios.post(`http://localhost:4000/stock`, { symbol: item?.symbol, action: 'add'});
+            const response = await axios.post(`http://localhost:4000/stock`, { symbol: item?.symbol, action: 'add' });
             if (response?.data) {
                 dispatch({ type: 'ADD_STOCK_SUCCESS', payload: item });
-                showNotification(`Watchlist updated.${item.symbol} is added`, { type: NotificationTypeEnum.Success })
+                showNotification(`Watchlist updated. ${item.symbol} is added`, { type: NotificationTypeEnum.Success })
             }
         } catch (error: any) {
             const message = error?.response?.data?.message
             dispatch({ type: 'ADD_STOCK_FAILURE', payload: message });
-            // showNotification(message || `Error while adding new stock`, { type: NotificationTypeEnum.Error })
+            showNotification(message || `Error while adding a new stock`, { type: NotificationTypeEnum.Error })
         }
     };
 
@@ -48,7 +48,7 @@ export const stockServiceActions = (dispatch: any) => {
             const response = await axios.post(`http://localhost:4000/stock`, { symbol: item?.symbol, action: 'delete' });
             if (response?.data) {
                 dispatch({ type: 'REMOVE_STOCK_SUCCESS', payload: item });
-                showNotification(`Watchlist updated.${item?.symbol} is removed`, { type: NotificationTypeEnum.Success })
+                showNotification(`Watchlist updated. ${item?.symbol} is removed`, { type: NotificationTypeEnum.Success })
             }
         } catch (error: any) {
             const message = error?.response?.data?.message

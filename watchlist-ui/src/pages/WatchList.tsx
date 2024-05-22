@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
-import styles from '../style/searchPage.module.css'
+import styles from '../styles/style.module.css';
 import StockDataGrid from '../components/StockDataGrid';
 import { useUserService } from '../services';
 import { useWatchlist } from '../contexts';
@@ -16,13 +16,11 @@ const Watchlist: React.FC = () => {
         if (!isLoggedIn) {
             navigate('/login')
         }
-    }, [isLoggedIn])
-
-    useEffect(() => {
-        if (isLoggedIn) {
+        else {
             fetchWatchlist();
         }
-    }, []);
+    }, [isLoggedIn])
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -33,12 +31,12 @@ const Watchlist: React.FC = () => {
     }, [state.watchlist]);
 
     return (
-        <div>
+        <>
             <Header />
             <Box className={styles.dataGrid}>
                 <StockDataGrid data={state?.watchlist} removeFromWatchlist={removeFromWatchlist} />
             </Box>
-        </div>
+        </>
     )
 };
 

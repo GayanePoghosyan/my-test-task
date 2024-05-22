@@ -17,4 +17,5 @@ export interface  IStock {
     componyName: string;
     symbol: string;
     timestamp: number;
+    logo?:string
 } 

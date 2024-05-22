@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { hashSync, compareSync } from 'bcrypt';
 import { validate } from 'class-validator';
 import { UpdateUserDto } from './dto';
-import { User, UserDocument } from './entities/user.entity';
+import { User, UserDocument } from './schema/user.schema';
 
 @Injectable()
 export class UserService {
