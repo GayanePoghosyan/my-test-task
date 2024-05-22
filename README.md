@@ -10,7 +10,7 @@ External API: Finnhub (https://finnhub.io/)
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install dependencies.
+Use the package manager [npm](https://www.npmjs.com/) to install dependencies. Frontend url: (http://localhost:3000)  Backend url: (http://localhost:4000)
 
 ```bash
 cd watchlist-backend
@@ -23,10 +23,17 @@ npm run start
 ```
 
 ## Screenshots
-![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/431e6387-c52a-493e-9690-540350b5d7dd)
-![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/28fd3d96-a50f-4305-8a38-f13a84d2e12e)
-![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/8a6a6d03-bb13-419a-a3c0-ccfc792a00af)
-![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/b8b1d4db-1785-4a5c-95f9-c017b71bb7ae)
+![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/3a5d4301-6918-48f6-ac30-157197da538e)
+![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/8c536f3a-bd25-4151-803e-eb50ac4136fc)
+![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/2e113b12-f5b7-4364-aa34-48cd32ea3944)
+![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/bde2cf3c-20ce-4fd6-b5a3-5ea6eb108f00)
+![image](https://github.com/GayanePoghosyan/my-test-task/assets/24316081/eaac8ca9-ee4a-4365-a8b8-d2fe05b15d6e)
+
+
+
+
+
+
 
 
 
