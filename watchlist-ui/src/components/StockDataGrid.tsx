@@ -19,11 +19,12 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
         {
             field: 'id',
             headerName: 'Id',
+            width: 50,
         },
         {
             field: 'logo',
             headerName: 'Logo',
-            width: 150,
+            width: 100,
             renderCell: (params: any) => (
                 <Box sx={{ display: 'flex' }}>
                     <img src={params.value} alt='logo' width={40} height={40} />
@@ -42,7 +43,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
         {
             field: 'currentPrice',
             headerName: 'Price (USD)',
-            width: 150,
+            width: 100,
             renderCell: (params: any) => (
                 <Box sx={{ display: 'flex' }}>
                     ${params.value?.toFixed(2)}
@@ -52,7 +53,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
         {
             field: 'change',
             headerName: 'Change',
-            width: 150,
+            width: 100,
             renderCell: (params: any) => (
                 <Box
                     sx={{
@@ -67,7 +68,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
         {
             field: 'changePercent',
             headerName: 'Change Percent',
-            width: 150,
+            width: 100,
             renderCell: (params: any) => (
                 <Box sx={{ display: 'flex' }}>
                     {params.value?.toFixed(2)}%
@@ -77,7 +78,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
         {
             field: 'timestamp',
             headerName: 'Date',
-            width: 200,
+            width: 150,
             renderCell: (params: any) => (
                 <Box sx={{ display: 'flex' }}>
                     {new Date(params.value * 1000).toLocaleDateString()}
@@ -87,7 +88,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
         {
             field: 'action',
             headerName: 'Action',
-            width: 150,
+            width: 100,
             renderCell: (params: any) => (
                 <div>
                     <Button variant="contained" size="small" color="error" onClick={() => removeFromWatchlist(params?.row)}>
@@ -108,12 +109,7 @@ const StockDataGrid: React.FC<{ data: Stock[], removeFromWatchlist: (item: any) 
                 },
             }} sx={{
                 boxShadow: 2,
-                height: 400,
-                border: 2,
-                borderColor: 'primary.light',
-                '& .MuiDataGrid-cell:hover': {
-                    color: 'primary.main',
-                },
+                minHeight: 250,
             }} />
         </Box>
     );

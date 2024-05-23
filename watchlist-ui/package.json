@@ -16,8 +16,10 @@
     "@types/react-dom": "^18.3.0",
     "@types/react-notification-system": "^0.2.46",
     "axios": "^1.6.8",
+    "chart.js": "^4.4.3",
     "dotenv": "^16.4.5",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-notifications": "^1.7.4",
     "react-router-dom": "^6.23.1",
@@ -52,8 +54,8 @@
   },
   "overrides": {
     "@mui/styles": {
-        "react": ">=18.2.0",
-        "react-dom": ">=18.2.0"
+      "react": ">=18.2.0",
+      "react-dom": ">=18.2.0"
     }
-}
+  }
 }
