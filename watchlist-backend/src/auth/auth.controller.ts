@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, UseGuards, ValidationPipe } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
@@ -28,7 +28,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() body: RegisterDto) {
+  async register(@Body(new ValidationPipe()) body: RegisterDto) {
     try {
       if (await this.userService.findByEmail(body.email)) {
         throw new BadRequestException('Email already exists');

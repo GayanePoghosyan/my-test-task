@@ -6,13 +6,14 @@ const userReducer = (state: UserState, action: Action) => {
             return {
                 ...state,
                 loading: true,
-                error: null,
+                error: '',
             };
         case 'USER_REGISTRATION_SUCCESS':
+            state = { ...state, user: { ...state.user, ...action.payload }};
             return {
                 ...state,
                 loading: false,
-                data: action.payload,
+               error:'',
             };
         case 'USER_REGISTRATION_FAILURE':
             return {
@@ -31,7 +32,7 @@ const userReducer = (state: UserState, action: Action) => {
             return {
                 ...state,
                 loading: false,
-                error: null,
+                error: '',
             };
         case 'USER_LOGIN_FAILURE':
             return {

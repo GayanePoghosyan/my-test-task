@@ -15,7 +15,7 @@ export class UserService {
     return await this.userModel.findOne({ email })
   }
 
-  async findBy({field}: any): Promise<User | null> {
+  async findBy(field: any): Promise<User | null> {
     return await this.userModel.findOne(field)
   }
 

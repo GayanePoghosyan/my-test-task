@@ -2,13 +2,14 @@ import {
     IsEmail,
     IsNotEmpty,
     IsNumber,
+    IsOptional,
     IsString
 } from 'class-validator';
 
 export class UserDto {
     @IsNumber()
-    userId:number
-    
+    userId: number
+
     @IsNotEmpty()
     @IsString()
     firstName: string;
@@ -20,4 +21,8 @@ export class UserDto {
     @IsEmail()
     @IsString()
     email: string;
+
+    @IsOptional()
+    @IsString()
+    googleId?: string
 }

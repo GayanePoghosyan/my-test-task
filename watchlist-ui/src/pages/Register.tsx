@@ -29,12 +29,19 @@ const Register: React.FC = () => {
         password: '',
     }
     const navigate = useNavigate();
-    const { register } = useUser();
+    const { register, state } = useUser();
 
     const regex = RegExp(/^([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)$/i);
     const [formData, setFormData] = useState(initialState);
     const [formErrors, setErrors] = useState(initialState);
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+
+    useEffect(() => {
+        const { loading, user } = state;
+        if (user?._id && !loading) {
+            navigate('/login')
+        }
+    }, [state])
 
     useEffect(() => {
         const errors = Object.values(formErrors).every(value => value === '');
@@ -77,7 +84,6 @@ const Register: React.FC = () => {
         const allFieldsFilled = Object.values(formData).every(value => Boolean(value))
         if (allFieldsFilled) {
             register(formData);
-            navigate('/login')
         }
     }
 
